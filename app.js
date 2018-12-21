@@ -19,12 +19,13 @@ var blogSchema = new mongoose.Schema({
 })
 var Blog = mongoose.model("Blog", blogSchema);
 
-// RESTful routes:
+// RESTful ROUTES: -
 
 app.get("/", function(req, res){
     res.redirect("/blogs");
 })
 
+// INDEX route
 app.get("/blogs", function(req, res){
     Blog.find({}, function(err, blogs){
         if(err){
@@ -33,6 +34,26 @@ app.get("/blogs", function(req, res){
             res.render("index", {blogs: blogs});
         }
     });
+})
+
+// NEW route
+    app.get("/blogs/new", function(req, res){
+        res.render("new");
+    });
+
+// CREATE route
+app.post("/blogs", function(req, res){
+    // creates blog
+    Blog.create(req.body.blog, function(err, newBlog){
+        if(err){
+            console.log("ERROR! DID NOT POST!");
+            console.log(err);
+            res.render("new");
+        } else {
+            // redirects to index
+            res.redirect("/blogs");
+        }
+    })
 })
 
 
