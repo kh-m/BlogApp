@@ -20,37 +20,37 @@ var blogSchema = new mongoose.Schema({
     title: String,
     image: String,
     body: String,
-    created: {type: Date, default: Date.now}
+    created: { type: Date, default: Date.now }
 })
 var Blog = mongoose.model("Blog", blogSchema);
 
 // RESTful ROUTES: -
 
-app.get("/", function(req, res){
+app.get("/", function (req, res) {
     res.redirect("/blogs");
 })
 
 // INDEX route
-app.get("/blogs", function(req, res){
-    Blog.find({}, function(err, blogs){
-        if(err){
+app.get("/blogs", function (req, res) {
+    Blog.find({}, function (err, blogs) {
+        if (err) {
             console.log(err);
         } else {
-            res.render("index", {blogs: blogs});
+            res.render("index", { blogs: blogs });
         }
     });
 })
 
 // NEW route
-    app.get("/blogs/new", function(req, res){
-        res.render("new");
-    });
+app.get("/blogs/new", function (req, res) {
+    res.render("new");
+});
 
 // CREATE route
-app.post("/blogs", function(req, res){
+app.post("/blogs", function (req, res) {
     // creates blog
-    Blog.create(req.body.blog, function(err, newBlog){
-        if(err){
+    Blog.create(req.body.blog, function (err, newBlog) {
+        if (err) {
             console.log("ERROR! DID NOT POST!");
             console.log(err);
             res.render("new");
@@ -62,28 +62,28 @@ app.post("/blogs", function(req, res){
 })
 
 // SHOW route
-app.get("/blogs/:id", function(req, res){
-    Blog.findById(req.params.id, function(err, foundBlog){
-        if(err){
+app.get("/blogs/:id", function (req, res) {
+    Blog.findById(req.params.id, function (err, foundBlog) {
+        if (err) {
             console.log("COULD NOT FIND BLOG!");
             console.log(err);
             res.redirect("/blogs");
         } else {
-            res.render("show", {blog: foundBlog});
+            res.render("show", { blog: foundBlog });
         }
     })
 })
 
 
 // EDIT route
-app.get("/blogs/:id/edit", function(req, res){
-    Blog.findById(req.params.id, function(err, foundBlog){
-        if(err){
+app.get("/blogs/:id/edit", function (req, res) {
+    Blog.findById(req.params.id, function (err, foundBlog) {
+        if (err) {
             console.log("COULD NOT EDIT!");
             console.log(err);
             res.redirect("/blogs");
         } else {
-            res.render("edit", {blog: foundBlog});
+            res.render("edit", { blog: foundBlog });
         }
     })
 })
@@ -91,8 +91,8 @@ app.get("/blogs/:id/edit", function(req, res){
 // UPDATE route
 app.put("/blogs/:id/", function (req, res) {
     // findByIdAndUpdate(idToFindBy, newData, callback)
-    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
-        if (err){
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function (err, updatedBlog) {
+        if (err) {
             console.log("COULD NOT EDIT!");
             console.log(err);
             res.redirect("/blogs");
@@ -111,9 +111,9 @@ app.delete("/blogs/:id", function (req, res) {
             res.redirect("/blogs");
         }
     })
-})    
+})
 
 
-app.listen(8000, function(){
+app.listen(8000, function () {
     console.log("Server running.")
 })
