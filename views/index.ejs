@@ -6,8 +6,8 @@
     <div>
         <h2><%= blog.title %></h2>
         <img src="<%= blog.image %>" alt="">
-        <span><%= blog.created %></span>
-        // substring(0, 100) displays characters 0-100 of blog.body
+        <span><%= blog.created.toDateString() %></span>
+        <!-- substring(0, 100) displays characters 0-100 of blog.body -->
         <p><%= blog.body.substring(0, 100) %></p>
         <a href="/blogs/<%= blog._id %>">Read more</a>
     </div>

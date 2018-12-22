@@ -1,7 +1,8 @@
 var express = require("express"),
     app = express(),
     bodyParser = require("body-parser"),
-    mongoose = require("mongoose");
+    mongoose = require("mongoose"),
+    methodOverride = require("method-override");
 
 // APP CONFIG:
 mongoose.connect("mongodb://localhost:27017/restful_blog_app", { useNewUrlParser: true });
@@ -9,6 +10,8 @@ app.set("view engine", "ejs");
 // So we can serve our custom style sheets
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+// Tells method-override to look for _method to override
+app.use(methodOverride("_method"));
 
 // MONGOOSE/MODEL CONFIG:
 var blogSchema = new mongoose.Schema({
@@ -65,6 +68,33 @@ app.get("/blogs/:id", function(req, res){
             res.redirect("/blogs");
         } else {
             res.render("show", {blog: foundBlog});
+        }
+    })
+})
+
+
+// EDIT route
+app.get("/blogs/:id/edit", function(req, res){
+    Blog.findById(req.params.id, function(err, foundBlog){
+        if(err){
+            console.log("COULD NOT EDIT!");
+            console.log(err);
+            res.redirect("/blogs");
+        } else {
+            res.render("edit", {blog: foundBlog});
+        }
+    })
+})
+
+// UPDATE route
+app.put("/blogs/:id/", function (req, res) {
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
+        if (err){
+            console.log("COULD NOT EDIT!");
+            console.log(err);
+            res.redirect("/blogs");
+        } else {
+            res.redirect("/blogs/" + req.params.id);
         }
     })
 })

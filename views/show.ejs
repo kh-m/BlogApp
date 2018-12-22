@@ -8,11 +8,11 @@
         <div class="item">
             <img class="ui centered rounded image" src="<%= blog.image %>" alt="">
             <div class="content">
-                // toDateString() turns the date into (dayOfWeek mnth day year)
+                <!-- toDateString() turns the date into (dayOfWeek mnth day year) -->
                 <span><%= blog.created.toDateString() %></span>
             </div>
             <div class="description">
-                    <p><%- blog.body %></p>
+                    <p><%= blog.body %></p>
             </div>
         </div>
     </div>
