@@ -6,6 +6,8 @@ var express = require("express"),
 
 // APP CONFIG:
 mongoose.connect("mongodb://localhost:27017/restful_blog_app", { useNewUrlParser: true });
+// To stop the depreciation Warning ...
+mongoose.set('useFindAndModify', false);
 app.set("view engine", "ejs");
 // So we can serve our custom style sheets
 app.use(express.static("public"));
@@ -88,6 +90,7 @@ app.get("/blogs/:id/edit", function(req, res){
 
 // UPDATE route
 app.put("/blogs/:id/", function (req, res) {
+    // findByIdAndUpdate(idToFindBy, newData, callback)
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
         if (err){
             console.log("COULD NOT EDIT!");
@@ -98,6 +101,18 @@ app.put("/blogs/:id/", function (req, res) {
         }
     })
 })
+
+// DELETE route
+
+app.delete("/blogs/:id", function (req, res) {
+    Blog.findByIdAndRemove(req.params.id, function (err) {
+        if (err) {
+            res.redirect("/blogs");
+        } else {
+            res.redirect("/blogs");
+        }
+    })
+})    
 
 
 app.listen(8000, function(){
