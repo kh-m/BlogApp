@@ -7,7 +7,7 @@ var express = require("express"),
 
 // APP CONFIG:
 var url = process.env.PUBLICBLOGDATABSEURL || "mongodb://localhost:27017/restful_blog_app";
-mongoose.connect(url, { useNewUrlParser: true });
+// mongoose.connect(url, { useNewUrlParser: true });
 // mongoose.connect("mongodb://khaled:gFofkMXjbV8@ds161804.mlab.com:61804/public-blog", { useNewUrlParser: true });
 // To stop the depreciation Warning ...
 mongoose.set('useFindAndModify', false);
