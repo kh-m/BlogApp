@@ -1,10 +1,17 @@
 <% include partials/header %>
 
 <div class="ui main text container">
-    <div class="ui huge header">RESTful Blog App</div>
+
+    <div class="ui sizer vertical segment">
+        <h1 class="ui header">publiBLOG</h1>
+        <div class="ui small header">publiBLOG is for anyone & everyone. We can all access & edit it. Post anything about anything, just stay respectful.
+                Don't edit or delete others' posts,
+                unless for ethical reasons.</div>
+    </div>
+
     <div class="ui top attached segment">
         <div class="ui divided items">
-            <% blogs.forEach(function(blog){ %>
+            <% blog.forEach(function(blog){ %>
             <div class="item">
                 <div class="image">
                     <img src="<%= blog.image %>" alt="">
@@ -15,16 +22,21 @@
                     </a>
                     <div class="meta">
                         <span>
+                            <% if(blog.created) { %>
                             <%= blog.created.toDateString() %></span>
+                        <% } %>
                     </div>
                     <div class="description">
                         <!-- substring(0, 100) displays characters 0-100 of blog.body -->
                         <p>
-                            <%= blog.body.substring(0, 100) %>
+                            <% if(blog.body && blog.body.length > 0) { %>
+                            <!-- <%- blog.body %> -->
+                            <%= blog.body.substring(0, 200) %> ...
+                            <% } %>
                         </p>
                     </div>
                     <div class="extra">
-                        <a class="ui floated basics violet button" href="/blogs/<%= blog._id %>">
+                        <a class="ui floated basics grey button" href="/blogs/<%= blog._id %>">
                             read more
                             <i class="right chevron icon"></i>
                         </a>

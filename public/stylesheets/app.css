@@ -1,5 +1,6 @@
-i.icon {
+#header-logo {
     font-size: 2em;
+    padding: 0 5px;
 }
 
 .container.main {

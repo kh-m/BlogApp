@@ -7,16 +7,19 @@
     <div class="ui top attached">
         <div class="item">
             <img class="ui centered rounded image" src="<%= blog.image %>" alt="">
+            <br>
             <div class="content">
-                <!-- toDateString() turns the date into (dayOfWeek mnth day year) -->
+                <!-- toDateString() turns the date into (dayOfWeek month day year) -->
                 <span><%= blog.created.toDateString() %></span>
             </div>
+            <br>
             <div class="description">
                     <p><%= blog.body %></p>
             </div>
-            <a class="ui basic orange button" href="/blogs/<%= blog._id %>/edit">Edit</a>
+            <br>
+            <a class="ui basic orange button" href="/blogs/<%= blog._id %>/edit">edit</a>
             <form id="delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
-                <button class="ui red basic button">delete.</button>
+                <button class="ui red basic button">DELETE</button>
             </form>
         </div>
     </div>

@@ -6,7 +6,9 @@ var express = require("express"),
     expressSanitizer = require("express-sanitizer");
 
 // APP CONFIG:
-mongoose.connect("mongodb://localhost:27017/restful_blog_app", { useNewUrlParser: true });
+var url = process.env.PUBLIC_BLOG_DATABSE_URL || "mongodb://localhost:27017/restful_blog_app"
+mongoose.connect(url, { useNewUrlParser: true });
+mongoose.connect("mongodb://khaled:gFofkMXjbV8@ds161804.mlab.com:61804/public-blog", { useNewUrlParser: true });
 // To stop the depreciation Warning ...
 mongoose.set('useFindAndModify', false);
 app.set("view engine", "ejs");
@@ -38,7 +40,7 @@ app.get("/blogs", function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render("index", { blogs: blogs });
+            res.render("index", { blog: blogs });
         }
     });
 })
@@ -119,7 +121,14 @@ app.delete("/blogs/:id", function (req, res) {
     })
 })
 
+// // For when running on external environment
+// app.listen(process.env.PORT, process.env.IP, function(){
+//     console.log("Server running.");
+//     console.log("PORT:", process.env.PORT);
+//     console.log("IP:", process.env.IP);
+// });
 
+// For when running on local environment
 app.listen(8000, function () {
     console.log("Server running.")
 })
