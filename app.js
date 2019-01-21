@@ -7,7 +7,7 @@ var express = require("express"),
 
 // APP CONFIG:
 var url = process.env.PUBLICBLOGDATABSEURL || "mongodb://localhost:27017/restful_blog_app";
-// mongoose.connect(url, { useNewUrlParser: true });
+mongoose.connect(url, { useNewUrlParser: true });
 // mongoose.connect("mongodb://khaled:gFofkMXjbV8@ds161804.mlab.com:61804/public-blog", { useNewUrlParser: true });
 // To stop the depreciation Warning ...
 mongoose.set('useFindAndModify', false);
@@ -122,13 +122,13 @@ app.delete("/blogs/:id", function (req, res) {
 })
 
 // For when running on external environment
-app.listen(process.env.PORT, process.env.IP, function(){
-    console.log("Server running.");
-    console.log("PORT:", process.env.PORT);
-    console.log("IP:", process.env.IP);
-});
+// app.listen(process.env.PORT, process.env.IP, function(){
+//     console.log("Server running.");
+//     console.log("PORT:", process.env.PORT);
+//     console.log("IP:", process.env.IP);
+// });
 
-// // For when running on local environment
-// app.listen(8000, function () {
-//     console.log("Server running.")
-// })
+// For when running on local environment
+app.listen(8080, function () {
+    console.log("Server running.")
+})
