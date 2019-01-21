@@ -121,14 +121,14 @@ app.delete("/blogs/:id", function (req, res) {
     })
 })
 
-// For when running on external environment
-app.listen(process.env.PORT, process.env.IP, function(){
-    console.log("Server running.");
-    console.log("PORT:", process.env.PORT);
-    console.log("IP:", process.env.IP);
-});
+// // For when running on external environment
+// app.listen(process.env.PORT, process.env.IP, function(){
+//     console.log("Server running.");
+//     console.log("PORT:", process.env.PORT);
+//     console.log("IP:", process.env.IP);
+// });
 
-// // For when running on local environment
-// app.listen(8000, function () {
-//     console.log("Server running.")
-// })
+// For when running on local environment
+app.listen(8000, function () {
+    console.log("Server running.")
+})
