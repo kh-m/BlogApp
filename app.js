@@ -6,9 +6,9 @@ var express = require("express"),
     expressSanitizer = require("express-sanitizer");
 
 // APP CONFIG:
-var url = process.env.PUBLIC_BLOG_DATABSE_URL || "mongodb://localhost:27017/restful_blog_app"
+var url = process.env.PUBLIC_BLOG_DATABSE_URL || "mongodb://localhost:27017/restful_blog_app";
 mongoose.connect(url, { useNewUrlParser: true });
-mongoose.connect("mongodb://khaled:gFofkMXjbV8@ds161804.mlab.com:61804/public-blog", { useNewUrlParser: true });
+// mongoose.connect("mongodb://khaled:gFofkMXjbV8@ds161804.mlab.com:61804/public-blog", { useNewUrlParser: true });
 // To stop the depreciation Warning ...
 mongoose.set('useFindAndModify', false);
 app.set("view engine", "ejs");
