@@ -10,3 +10,27 @@ I built this **node.js** web app to try out **Semantic UI** for the first time, 
 * Express-Sanitizer
 * RESTful routing
 * Semantic-UI
+
+## Running the code
+Clone (or download) the repository:
+```javascript
+$ git clone https://github.com/kh-m/BlogApp.git
+```
+
+Install the dependencies in package.json:
+```javascript
+$ npm install
+```
+
+With MongoDB installed locally, run the MongoDB server (do not close):
+```javascript
+$ mongod
+```
+Run the starter app with node:
+```javascript
+$ npm start
+```
+View the web app locally at:
+```javascript
+http://localhost:8000
+```
